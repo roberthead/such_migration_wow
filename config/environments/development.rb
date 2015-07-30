@@ -1,4 +1,8 @@
 Rails.application.configure do
+  config.generators do |g|
+    g.test_framework :rspec, fixture: true
+    g.template_engine :slim
+  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
