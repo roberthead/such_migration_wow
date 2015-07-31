@@ -1,0 +1,17 @@
+ul#slide-nav
+  li= link_to_unless_current "<<", [@deck, @deck.slides.first]
+  - if @slide == @deck.slides.first
+    li <
+  - else
+    li.huge= link_to "<", [@deck, @deck.slides.select { |s| s.position < @slide.position }.last]
+  - @deck.slides.each do |slide|
+    - if @slide == slide
+      li
+        strong= slide.position
+    - else
+      li= link_to slide.position, [@deck, slide]
+  - if @slide == @deck.slides.last
+    li >
+  - else
+    li.huge= link_to ">", [@deck, @deck.slides.detect { |s| s.position > @slide.position }]
+  li= link_to_unless_current ">>", [@deck, @deck.slides.last]
