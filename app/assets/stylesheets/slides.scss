@@ -5,9 +5,14 @@
 #slide-container {
   margin: 3rem;
   margin-top: 1rem;
-  border: 1px solid #555599;
+  border: 1px solid #555555;
+  background: #F8F8F8;
   padding: 3rem;
   text-align: center;
+
+  h1 {
+    color: #555555;
+  }
 
   > * {
     margin: 2rem 0;
@@ -23,13 +28,21 @@
     width: auto;
     max-width: 70%;
 
-    li {
+    p, li {
       font-size: 1.2rem;
     }
 
     .optional {
       color: #FF9900;
     }
+  }
+
+  strike {
+    color: #990000;
+  }
+
+  .strike-edit {
+    font-weight: bold;
   }
 }
 
