@@ -1,7 +1,15 @@
 class Deck < ActiveRecord::Base
-  has_many :slides, -> { order(:position) }
-
   before_validation :compute_slug
+
+  # Transitional flexible fetch for two-stage deployment of schema change
+  def slides
+    if SlidePlacement.where(deck_id: id).any?
+      placement_ids = SlidePlacement.where(deck_id: id).pluck(:id)
+      Slide.where(id: placement_ids)
+    else
+      Slide.where(deck_id: id)
+    end
+  end
 
   def to_param
     slug
