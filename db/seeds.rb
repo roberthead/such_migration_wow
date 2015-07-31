@@ -280,15 +280,6 @@ slide_attributes_list = [
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
-  {
-    header: "Flexible Code",
-    body: <<-EOS.gsub(/^ {6}/, ''),
-      - Works before and after coupled *schema migrations*
-      - Works before and after coupled *data migrations*
-    EOS
-    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-    EOS
-  },
 
   {
     header: "Happy Deployments (revisited)",
