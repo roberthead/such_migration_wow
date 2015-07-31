@@ -4,12 +4,14 @@ ul#slide-nav
     li <
   - else
     li.huge= link_to "<", [@deck, @deck.slides.select { |s| s.position < @slide.position }.last]
-  - @deck.slides.each do |slide|
-    - if @slide == slide
-      li
-        strong= slide.position
+  - @deck.slides.each_with_index do |slide|
+    - if (@slide.position - slide.position).abs < 3 || slide.position < 3 || slide.position > @deck.slides.last.position - 2
+      - if @slide == slide
+        li.current= slide.position
+      - else
+        li= link_to slide.position, [@deck, slide]
     - else
-      li= link_to slide.position, [@deck, slide]
+      li.placeholder .
   - if @slide == @deck.slides.last
     li >
   - else
