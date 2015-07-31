@@ -18,14 +18,15 @@ slide_attributes_list = [
   {
     header: "Zero Downtime Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      ### Robert Head
+      ### Robert dot Head at gmail dot com
 
-      ### UserTesting.com
+      ### for UserTesting.com
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
       Welcome.
     EOS
   },
+
   {
     header: "Pourquoi",
     body: <<-EOS.gsub(/^ {6}/, ''),
@@ -34,6 +35,80 @@ slide_attributes_list = [
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
+
+  {
+    header: "In the beginning...",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      <img src="/assets/green_grass_field.jpg" />
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "But if you're lucky, eventually... this.",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      ![Waiting...](/assets/cookie_waiting.gif "Cookie Monster waiting")
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "It Gets Worse!",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      While you are twiddling your fingers...
+
+      ### The site is down!
+
+      ![Fustrated guy at laptop](/assets/frustrated_guy.jpg "Fustrated guy at laptop")
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Aaarrgggh! Why??",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      Oh. It was me. :|
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Problem: Database vs. Code",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - Because migrations are non-instantaneous...
+        - If you migrate *during* deployment, the database is changing under the previous code
+        - If you migrate *after* deployment, the new code begins running without the schema change
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Solution: Two-Stage Deployments",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      ### First Deployment
+
+      - constructive schema migrations
+      - data migrations
+      - code:
+        - writes to new schema
+        - reads from new schema, falls back to old
+
+      ### Second Deployment
+
+      - destructive schema migrations
+      - code:
+        - reads from new only
+        - removes data migration
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
   {
     header: "Schema vs. Data Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
@@ -75,22 +150,24 @@ slide_attributes_list = [
     header: "Data Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
       - Extract, Transform and Load (ETL)
+      - Moving data from old schema to new schema
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
+
   {
     header: "Data Migration Strategies",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - separate from `db/schema`
-      - one-off rake task
+      - separate from `db/migrations`
+      - one-off `rake` task
       - deploy -> run -> verify -> delete from codebase
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
   {
-    header: "Happy Deployments",
+    header: "Some Best Practices",
     body: <<-EOS.gsub(/^ {6}/, ''),
       ### Schema Migrations
 
@@ -135,6 +212,10 @@ slide_attributes_list = [
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
+
+
+
+
   {
     header: "Principle",
     body: <<-EOS.gsub(/^ {6}/, ''),
@@ -180,16 +261,6 @@ slide_attributes_list = [
       ### Code
 
       - Flexible
-    EOS
-    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-    EOS
-  },
-
-  # explain the problem
-
-  {
-    header: "Double Deployment Strategy",
-    body: <<-EOS.gsub(/^ {6}/, ''),
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
