@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731001126) do
+ActiveRecord::Schema.define(version: 20150731181049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20150731001126) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "slide_placements", force: :cascade do |t|
+    t.integer  "deck_id"
+    t.integer  "slide_id"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "slide_placements", ["deck_id"], name: "index_slide_placements_on_deck_id", using: :btree
+  add_index "slide_placements", ["slide_id"], name: "index_slide_placements_on_slide_id", using: :btree
 
   create_table "slides", force: :cascade do |t|
     t.integer  "deck_id"
@@ -38,5 +49,6 @@ ActiveRecord::Schema.define(version: 20150731001126) do
 
   add_index "slides", ["deck_id"], name: "index_slides_on_deck_id", using: :btree
 
-  add_foreign_key "slides", "decks"
+  add_foreign_key "slide_placements", "decks"
+  add_foreign_key "slide_placements", "slides"
 end
