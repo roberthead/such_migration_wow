@@ -26,32 +26,134 @@ slide_attributes_list = [
       Welcome.
     EOS
   },
-
   {
-    header: "Principles for Deployments",
+    header: "Why Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      ### Migrations must be:
+      - `db/migrations` is for evolving the schema
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Happy Deployments",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      ### Schema Migrations
 
       - Reversible
-      - Restrained
+      - Responsible
 
-      ### Code must be:
+      ### Data Migrations
+
+      - Deferrable
+
+      ### Code
 
       - Flexible
-      EOS
+    EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-      ## Reversible?
+    EOS
+  },
+  {
+    header: "Reversible Schema Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - up-down-up
+        - `rake db:migrate; rake db:rollback; rake db:migrate`
+      - Did I lose data?
+      - Use reversible migration actions
+        - Add creative attributes to destructive actions
+        - <code>remove_column :posts, :slug<em class='optional'>, :string, index: true</em></code>
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Responsible Schema Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - SchemaStatements only
+        - no data transformations
+      - Single table
+      - Safe
+        - Compatible with the code currently deployed
+        - ZDM!
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Principle",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      Any migration being deployed should be compatible with the code that is already running.
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Deferrable Data Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - Run manually
+      - Verified manually
+      - Temporary
+        - Delete from code after verification
+        - Time-bomb
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Flexible Code",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - Works before and after coupled *schema migrations*
+      - Works before and after coupled *data migrations*
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Happy Deployments (revisited)",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      ### Schema Migrations
 
-      - Strive to use the reversible migration actions.
-      - Add additional creative attributes to destructive actions in the change method
+      - Reversible
+      - Responsible
 
-      ## Restrained?
+      ### Data Migrations
 
-      - Constrained to migration actions
-      - Schema changes only
-      - No data migrations
-      - No references to external classes
-      - SQL when necessary
+      - Deferrable
+
+      ### Code
+
+      - Flexible
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Constructive Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - `create_*`
+      - `add_*`
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Destructive Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - `drop_*`
+      - `remove_*`
+      - `change_*`
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+  {
+    header: "Data Migrations",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - separate from schema migrations
+      - rake task
+      - deploy, run, verify, delete
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
 ]
