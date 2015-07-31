@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :decks
+  resources :decks, only: [:index, :show] do
+    resources :slides, only: [:show]
+  end
 
   root to: "decks#index"
 
