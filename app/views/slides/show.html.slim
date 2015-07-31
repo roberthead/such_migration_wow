@@ -1,4 +1,4 @@
-h1= @slide.header
-
-div
-  = @slide.body
+#slide-container
+  h1.header= @slide.header
+  .body
+    = markdown(@slide.body)
