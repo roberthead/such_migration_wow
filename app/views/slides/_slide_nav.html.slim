@@ -1,5 +1,5 @@
 ul#slide-nav
-  li= link_to_unless_current "<<", [@deck, @deck.slides.first]
+  li= link_to_unless_current "|<", [@deck, @deck.slides.first]
   - if @slide == @deck.slides.first
     li <
   - else
@@ -16,4 +16,4 @@ ul#slide-nav
     li >
   - else
     li.huge= link_to ">", [@deck, @deck.slides.detect { |s| s.position > @slide.position }]
-  li= link_to_unless_current ">>", [@deck, @deck.slides.last]
+  li= link_to_unless_current ">|", [@deck, @deck.slides.last]
