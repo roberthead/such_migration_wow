@@ -1,7 +1,9 @@
-h1 Decks
+#decks-container
 
-ul.decks
-  - @decks.each do |deck|
-    = content_tag_for(:li, deck)
-      h2= link_to(deck.name, deck)
-      p= deck.description
+  h1 Decks
+
+  ul.decks
+    - @decks.each do |deck|
+      = content_tag_for(:li, deck)
+        h2= link_to(deck.name, deck)
+        p= deck.description
