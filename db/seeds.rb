@@ -236,7 +236,8 @@ slide_attributes_list = [
         - <code>remove_column :posts, :slug<em class='optional'>, :string, index: true</em></code>
       - up-down-up
         - `rake db:migrate; rake db:rollback; rake db:migrate`
-      - Did I lose data?
+      - Any failures?
+      - Any data loss?
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
       - or `rake db:migrate; rake db:migrate:redo`
@@ -335,11 +336,31 @@ slide_attributes_list = [
   },
 
   {
+    header: "The Plan",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      1. First Deployment
+        - constructive schema changes
+        - flexible code
+      2. Run data migrations
+        - `heroku run rake migrate_data:use_slide_sharing`
+      3. Verify data
+      4. Second Deployment
+        - destructive schema migrations
+        - confident code
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
     header: "The Nuclear Option",
     body: <<-EOS.gsub(/^ {6}/, ''),
       ### Large Hadron Migrator
 
-      - when the migration triggers a long-lived lock of the table
+      Use case:
+
+      - When the migration triggers a long-lived lock of the table
+      - For example, creating an index on a huge table
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -348,14 +369,14 @@ slide_attributes_list = [
   {
     header: "Resources",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - http://blog.codeship.com/rails-migrations-zero-downtime/
-      - http://blog.carbonfive.com/2011/01/27/start-testing-your-migrations-right-now/
-      - http://vesavanska.com/2014/activerecord-migrations-best-practices/
-      - http://jordanhollinger.com/2014/07/30/rails-migration-etiquette/
-      - http://selectedproblems.blogspot.com/2011/09/rails-migrations-best-practices.html
-      - http://rails-bestpractices.com/tag/migration/
-      - https://developers.soundcloud.com/blog/soundcloud-mobile-%E2%80%93-proxies.html
-      - http://tech.taskrabbit.com/blog/2014/10/30/rails-schema-with-lhm/
+      - <http://blog.codeship.com/rails-migrations-zero-downtime/>
+      - <http://blog.carbonfive.com/2011/01/27/start-testing-your-migrations-right-now/>
+      - <http://vesavanska.com/2014/activerecord-migrations-best-practices/>
+      - <http://jordanhollinger.com/2014/07/30/rails-migration-etiquette/>
+      - <http://selectedproblems.blogspot.com/2011/09/rails-migrations-best-practices.html>
+      - <http://rails-bestpractices.com/tag/migration/>
+      - <https://developers.soundcloud.com/blog/soundcloud-mobile-%E2%80%93-proxies.html>
+      - <http://tech.taskrabbit.com/blog/2014/10/30/rails-schema-with-lhm/>
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
