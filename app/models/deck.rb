@@ -1,5 +1,5 @@
 class Deck < ActiveRecord::Base
-  has_many :slides, -> { order(:position) }
+  has_many :slides, -> { order(:position) }, dependent: :destroy
 
   before_validation :compute_slug
 

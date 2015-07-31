@@ -309,7 +309,11 @@ slide_attributes_list = [
   {
     header: "Let's Code!",
     body: <<-EOS.gsub(/^ {6}/, ''),
+      ### User Story
 
+      IN ORDER TO save time
+      AS a presenter
+      I WANT to be able to place a slide in multiple decks
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
