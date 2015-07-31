@@ -51,4 +51,5 @@ ActiveRecord::Schema.define(version: 20150731181049) do
 
   add_foreign_key "slide_placements", "decks"
   add_foreign_key "slide_placements", "slides"
+  add_foreign_key "slides", "decks"
 end
