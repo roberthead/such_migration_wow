@@ -18,9 +18,9 @@ slide_attributes_list = [
   {
     header: "Zero Downtime Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      ### Robert dot Head at gmail dot com
-
       ### for UserTesting.com
+      ### <rob@ministryofvelocity.com>
+      ### [Ministry of Velocity](http://www.ministryofvelocity.com/ "Ministry of Velocity")
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
       Welcome.
@@ -28,9 +28,9 @@ slide_attributes_list = [
   },
 
   {
-    header: "Pourquoi",
+    header: "Rails Migrations. Pourquoi?",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - `db/migrations` are for evolving the schema
+      - `db/migrations` help us to manage the evolution of the schema
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -82,6 +82,15 @@ slide_attributes_list = [
       - Because migrations are non-instantaneous...
         - If you migrate *during* deployment, the database is changing under the previous code
         - If you migrate *after* deployment, the new code begins running without the schema change
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Principle",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      Any migration being deployed <strike>should</strike> <span class='strike-edit'>must</span> be compatible with the code that is already running.
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -188,12 +197,12 @@ slide_attributes_list = [
   {
     header: "Reversible Schema Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - up-down-up
-        - `rake db:migrate; rake db:rollback; rake db:migrate`
-      - Did I lose data?
       - Use reversible migration actions
         - Add creative attributes to destructive actions
         - <code>remove_column :posts, :slug<em class='optional'>, :string, index: true</em></code>
+      - up-down-up
+        - `rake db:migrate; rake db:rollback; rake db:migrate`
+      - Did I lose data?
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
       - or `rake db:migrate; rake db:migrate:redo`
@@ -213,17 +222,6 @@ slide_attributes_list = [
     EOS
   },
 
-
-
-
-  {
-    header: "Principle",
-    body: <<-EOS.gsub(/^ {6}/, ''),
-      Any migration being deployed should be compatible with the code that is already running.
-    EOS
-    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-    EOS
-  },
   {
     header: "Deliberate Data Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
