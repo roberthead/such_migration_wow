@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Deck.destroy_all
+
 deck = Deck.where(slug: "zero-downtime-migrations").first_or_create do |deck|
   deck.name = "Strategies for Zero Downtime Migrations"
   deck.description = "Roll out database schema changes and data migrations to a Ruby on Rails application without production downtime."
