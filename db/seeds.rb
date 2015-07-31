@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Slide.destroy_all
 Deck.destroy_all
 
 deck = Deck.where(slug: "zero-downtime-migrations").first_or_create do |deck|
@@ -13,8 +14,6 @@ deck = Deck.where(slug: "zero-downtime-migrations").first_or_create do |deck|
   deck.description = "Roll out database schema changes and data migrations to a Ruby on Rails application without production downtime."
   deck.author_name = "Robert Head"
 end
-
-deck.slides.destroy_all
 
 slide_attributes_list = [
   {
@@ -81,9 +80,10 @@ slide_attributes_list = [
   {
     header: "Problem: Database vs. Code",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - Because migrations are non-instantaneous...
-        - If you migrate *during* deployment, the database is changing under the previous code
-        - If you migrate *after* deployment, the new code begins running without the schema change
+      - Migrations are non-instantaneous
+      - Therefore...
+        - If you migrate *during* deployment, the database is *changing under* the previous code
+        - If you migrate *after* deployment, the new code begins running *without the schema change*
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -99,18 +99,49 @@ slide_attributes_list = [
   },
 
   {
+    header: "Principle",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      Any code being deployed <strike>should</strike> <span class='strike-edit'>must</span> be compatible with the database before and after any coupled data migrations.
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
     header: "Solution: Two-Stage Deployments",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      ### First Deployment
+      1. First Deployment
+        - constructive schema changes
+        - flexible code
+      2. Run data migrations
+        - `heroku run rake my_migration`
+      3. Verify data
+      4. Second Deployment
+        - destructive schema migrations
+        - confident code
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
 
+  {
+    header: "First Deployment",
+    body: <<-EOS.gsub(/^ {6}/, ''),
       - constructive schema migrations
       - data migrations
       - code:
         - writes to new schema
         - reads from new schema, falls back to old
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
 
-      ### Second Deployment
-
+  {
+    header: "Second Deployment",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - separate branch + pull request
+        - merge after first deployment
       - destructive schema migrations
       - code:
         - reads from new only
@@ -228,11 +259,10 @@ slide_attributes_list = [
     header: "Deliberate Data Migrations",
     body: <<-EOS.gsub(/^ {6}/, ''),
       - Deferrable
-      - Run manually
-      - Verified manually
+      - Run manually by humans
+      - Verified manually by humans
       - Temporary
         - Delete from code after verification
-        - Time-bomb?
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -246,6 +276,16 @@ slide_attributes_list = [
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
+  {
+    header: "Flexible Code",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      - Works before and after coupled *schema migrations*
+      - Works before and after coupled *data migrations*
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
   {
     header: "Happy Deployments (revisited)",
     body: <<-EOS.gsub(/^ {6}/, ''),
@@ -261,6 +301,15 @@ slide_attributes_list = [
       ### Code
 
       - Flexible
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Let's Code!",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS

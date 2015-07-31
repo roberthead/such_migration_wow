@@ -1,7 +1,7 @@
 class CreateSlides < ActiveRecord::Migration
   def change
     create_table :slides do |t|
-      t.belongs_to :deck, index: true, foreign_key: true
+      t.belongs_to :deck, index: true
       t.integer :position
       t.string :header
       t.string :slug
