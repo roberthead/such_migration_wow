@@ -3,4 +3,5 @@ h1 Decks
 ul.decks
   - @decks.each do |deck|
     = content_tag_for(:li, deck)
-      = link_to(deck.name, deck)
+      h2= link_to(deck.name, deck)
+      p= deck.description
