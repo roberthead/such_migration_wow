@@ -10,7 +10,7 @@ Slide.destroy_all
 Deck.destroy_all
 
 deck = Deck.where(slug: "zero-downtime-migrations").first_or_create do |deck|
-  deck.name = "Strategies for Zero Downtime Migrations"
+  deck.name = "Zero Downtime Migrations"
   deck.description = "Roll out database schema changes and data migrations to a Ruby on Rails application without production downtime."
   deck.author_name = "Robert Head"
 end
@@ -29,9 +29,10 @@ slide_attributes_list = [
   },
 
   {
-    header: "Rails Migrations. Pourquoi?",
+    header: "Pourquoi?",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - `db/migrations` help us to manage the evolution of the schema
+      ### Rails Migrations Origin Story
+      - `db/migrations` help us to manage the evolution of the database schema
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
