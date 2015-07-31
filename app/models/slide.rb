@@ -1,5 +1,6 @@
 class Slide < ActiveRecord::Base
-  belongs_to :deck
+  has_many :slide_placements
+  has_many :decks, through: :slide_placements
 
   before_validation :compute_slug
 
