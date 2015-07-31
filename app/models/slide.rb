@@ -3,6 +3,8 @@ class Slide < ActiveRecord::Base
 
   before_validation :compute_slug
 
+  default_scope { order 'position' }
+
   def to_param
     slug.presence || compute_slug
   end
