@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deck: 
+  position: 1
+  header: MyString
+  slug: MyString
+  body: MyText
+  speaker_notes: MyText
+
+two:
+  deck: 
+  position: 1
+  header: MyString
+  slug: MyString
+  body: MyText
+  speaker_notes: MyText
