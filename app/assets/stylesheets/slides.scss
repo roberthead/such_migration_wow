@@ -7,7 +7,7 @@
   margin-top: 1rem;
   border: 1px solid #555555;
   background: #F8F8F8;
-  padding: 3rem;
+  padding: 2rem;
   text-align: center;
 
   h1 {
@@ -15,7 +15,7 @@
   }
 
   > * {
-    margin: 2rem 0;
+    margin: 1rem 0;
   }
 
   .header {
@@ -23,6 +23,7 @@
   }
 
   .body {
+    z-index: 1;
     display: inline-block;
     text-align: left;
     width: auto;
@@ -34,6 +35,11 @@
 
     .optional {
       color: #FF9900;
+    }
+
+    img {
+      display: block;
+      margin: 1rem;
     }
   }
 

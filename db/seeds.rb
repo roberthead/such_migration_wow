@@ -22,6 +22,8 @@ slide_attributes_list = [
       ### for UserTesting.com
       ### <rob@ministryofvelocity.com>
       ### [Ministry of Velocity](http://www.ministryofvelocity.com/ "Ministry of Velocity")
+      ### 31 July 2015
+      ![Robert Head](/assets/robert_head.jpg)
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
       Welcome.
@@ -41,7 +43,7 @@ slide_attributes_list = [
   {
     header: "In the beginning...",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      <img src="/assets/green_grass_field.jpg" />
+      ![Green field](/assets/green_grass_field.jpg "Green field")
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -50,7 +52,7 @@ slide_attributes_list = [
   {
     header: "But if you're lucky, eventually... this.",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      ![Waiting...](/assets/cookie_waiting.gif "Cookie Monster waiting")
+      ![Cookie Monster waiting...](/assets/cookie_waiting.gif "Cookie Monster waiting")
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -111,42 +113,41 @@ slide_attributes_list = [
   {
     header: "Solution: Two-Stage Deployments",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      1. First Deployment
-        - constructive schema changes
-        - flexible code
-      2. Run data migrations
-        - `heroku run rake my_migration`
-      3. Verify data
-      4. Second Deployment
-        - destructive schema migrations
-        - confident code
+      1. Constructive Deployment
+        - Human intervention and sanity checking
+      2. Destructive Deployment
+        - Confident clean-up
+      ![2](/assets/2-badger.gif "2")
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
 
   {
-    header: "First Deployment",
+    header: "1. Constructive Deployment",
     body: <<-EOS.gsub(/^ {6}/, ''),
-      - constructive schema migrations
-      - data migrations
-      - code:
-        - writes to new schema
-        - reads from new schema, falls back to old
+      - What's in it?
+        - constructive schema migrations
+        - data migrations
+        - code writes to new schema
+        - code reads from new, falls back to old
+      - Post-deployment:
+        - Manually run data migrations
+        - Verify data integrity in new schema
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
   },
 
   {
-    header: "Second Deployment",
+    header: "2. Destructive Deployment",
     body: <<-EOS.gsub(/^ {6}/, ''),
       - separate branch + pull request
-        - merge after first deployment
+        - held until after first deployment
+        - What's in it?
       - destructive schema migrations
-      - code:
-        - reads from new only
-        - removes data migration
+      - cleaned-up code that reads from new schema only
+      - may remove data migration task
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -310,43 +311,8 @@ slide_attributes_list = [
   },
 
   {
-    header: "Let's Code!",
+    header: "Schema Migration Still Locking Users Out?",
     body: <<-EOS.gsub(/^ {6}/, ''),
-
-    EOS
-    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-    EOS
-  },
-
-  {
-    header: "The Plan",
-    body: <<-EOS.gsub(/^ {6}/, ''),
-      1. First Deployment
-        - constructive schema changes
-        - flexible code
-      2. Run data migrations
-        - `heroku run rake migrate_data:use_slide_sharing`
-      3. Verify data
-      4. Second Deployment
-        - destructive schema migrations
-        - confident code
-    EOS
-    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
-    EOS
-  },
-
-  {
-    header: "The Plan",
-    body: <<-EOS.gsub(/^ {6}/, ''),
-      1. First Deployment
-        - constructive schema changes
-        - flexible code
-      2. Run data migrations
-        - `heroku run rake migrate_data:use_slide_sharing`
-      3. Verify data
-      4. Second Deployment
-        - destructive schema migrations
-        - confident code
     EOS
     speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
     EOS
@@ -367,7 +333,46 @@ slide_attributes_list = [
   },
 
   {
-    header: "Resources",
+    header: "Let's Code!",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      ### User Story
+
+      IN ORDER TO save time
+
+      AS a content creator
+
+      I WANT to be able to re-use slides in other decks
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "The Plan",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      1. First Deployment (Constructive)
+      2. Run data migrations on server
+        - `rake migrate_data:use_slide_sharing`
+      3. Verify data
+      4. Second Deployment (Destructive)
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "The Medium is the Message",
+    body: <<-EOS.gsub(/^ {6}/, ''),
+      <https://github.com/roberthead/such_migration_wow>
+
+      Explore the Pull Requests
+    EOS
+    speaker_notes: <<-EOS.gsub(/^ {6}/, ''),
+    EOS
+  },
+
+  {
+    header: "Some Resources",
     body: <<-EOS.gsub(/^ {6}/, ''),
       - <http://blog.codeship.com/rails-migrations-zero-downtime/>
       - <http://blog.carbonfive.com/2011/01/27/start-testing-your-migrations-right-now/>
