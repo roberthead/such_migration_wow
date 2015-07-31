@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730232837) do
+ActiveRecord::Schema.define(version: 20150731001126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,4 +25,18 @@ ActiveRecord::Schema.define(version: 20150730232837) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "slides", force: :cascade do |t|
+    t.integer  "deck_id"
+    t.integer  "position"
+    t.string   "header"
+    t.string   "slug"
+    t.text     "body"
+    t.text     "speaker_notes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "slides", ["deck_id"], name: "index_slides_on_deck_id", using: :btree
+
+  add_foreign_key "slides", "decks"
 end
